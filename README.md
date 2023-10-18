@@ -1,1 +1,2 @@
-# tic-tac-toe
+# Goal
+An interesting `X` `O` game.  
