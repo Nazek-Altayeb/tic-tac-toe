@@ -1,49 +1,49 @@
-let restartBtn = document.getElementById('restartBtn')
-let Player = document.getElementById('player')
-let boxes = Array.from(document.getElementsByClassName('box'))
+let restartBtn = document.getElementById("restartBtn");
+let Player = document.getElementById("player");
+let boxes = Array.from(document.getElementsByClassName("box"));
 
 let winnerIndicator = getComputedStyle(document.body).getPropertyValue(
-  '--winning-blocks'
-)
+  "--winning-blocks"
+);
 
-const firstPlayer = 'X'
-const secondPlayer = 'O'
-let currentPlayer = firstPlayer
-let spaces = Array(9).fill(null)
+const firstPlayer = "X";
+const secondPlayer = "O";
+let currentPlayer = firstPlayer;
+let spaces = Array(9).fill(null);
 
 const startGame = () => {
-  boxes.forEach((box) => box.addEventListener('click', fillBox))
-}
+  boxes.forEach((box) => box.addEventListener("click", fillBox));
+};
 
 const fillBox = (event) => {
-  const id = event.target.id
+  const id = event.target.id;
   if (!spaces[id]) {
-    spaces[id] = currentPlayer
-    event.target.innerText = currentPlayer
+    spaces[id] = currentPlayer;
+    event.target.innerText = currentPlayer;
     if (playerHasWon() !== false) {
-      player.innerText = `${currentPlayer} has won !`
-      let winningBlocks = playerHasWon()
+      player.innerText = `${currentPlayer} has won !`;
+      let winningBlocks = playerHasWon();
       winningBlocks.map(
         (box) => (boxes[box].style.backgroundColor = winnerIndicator)
-      )
-      return
+      );
+      return;
     }
 
-    currentPlayer = currentPlayer == firstPlayer ? secondPlayer : firstPlayer
+    currentPlayer = currentPlayer == firstPlayer ? secondPlayer : firstPlayer;
   }
-}
+};
 
 const restartGame = () => {
-  spaces.fill(null)
+  spaces.fill(null);
   boxes.forEach((box) => {
-    box.innerText = ''
-    box.style.backgroundColor = ''
-  })
-  playerText.innerHTML = 'Tic Tac Toe'
-  currentPlayer = firstPlayer
-}
+    box.innerText = "";
+    box.style.backgroundColor = "";
+  });
+  playerText.innerHTML = "Tic Tac Toe";
+  currentPlayer = firstPlayer;
+};
 
-restartBtn.addEventListener('click', restartGame)
+restartBtn.addEventListener("click", restartGame);
 
 const winningCombinations = [
   [0, 1, 2],
@@ -54,17 +54,17 @@ const winningCombinations = [
   [2, 5, 8],
   [0, 4, 8],
   [2, 4, 6],
-]
+];
 
 const playerHasWon = () => {
   for (const combination of winningCombinations) {
-    let [a, b, c] = combination
+    let [a, b, c] = combination;
 
     if (spaces[a] && spaces[a] == spaces[b] && spaces[a] == spaces[c]) {
-      return [a, b, c]
+      return [a, b, c];
     }
   }
-  return false
-}
+  return false;
+};
 
-startGame()
+startGame();
