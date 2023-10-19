@@ -39,7 +39,7 @@ const restartGame = () => {
     box.innerText = "";
     box.style.backgroundColor = "";
   });
-  playerText.innerHTML = "Tic Tac Toe";
+  player.innerHTML = "Tic Tac Toe";
   currentPlayer = firstPlayer;
 };
 
